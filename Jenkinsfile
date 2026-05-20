@@ -45,7 +45,7 @@ pipeline {
                     } else if (env.BRANCH_NAME == 'release') {
                         serviceId = 'srv-d86qirn7f7vs73aun790' // Replace with actual staging ID
                     } else if (env.BRANCH_NAME == 'develop') {
-                        serviceId = 'ssrv-d86qi4jtqb8s73frne1g'     
+                        serviceId = 'srv-d86qi4jtqb8s73frne1g'     
                     } else {
                         echo "Not deploying branch ${env.BRANCH_NAME} to Render"
                         return
