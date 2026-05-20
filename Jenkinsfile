@@ -68,15 +68,22 @@ pipeline {
     }
     
     post {
-        failure {
-            echo "Pipeline failed!"
-            script {
-                def ns = (env.BRANCH_NAME == 'main') ? 'prod' : (env.BRANCH_NAME == 'release') ? 'staging' : 'dev'
-                sh "kubectl rollout undo deployment/frontend -n ecommerce-${ns} --ignore-not-found=true"
-            }
-        }
-        success {
-            echo "Pipeline completed successfully!"
+    failure {
+        echo "Pipeline failed!"
+        script {
+            def ns = (env.BRANCH_NAME == 'main') ? 'prod' : (env.BRANCH_NAME == 'release') ? 'staging' : 'dev'
+            // Check if deployment exists before trying to rollback
+            sh """
+                if kubectl get deployment frontend -n ecommerce-${ns} > /dev/null 2>&1; then
+                    kubectl rollout undo deployment/frontend -n ecommerce-${ns}
+                else
+                    echo "No frontend deployment in namespace ecommerce-${ns} - skipping rollback"
+                fi
+            """
         }
     }
+    success {
+        echo "Pipeline completed successfully!"
+    }
+}
 }
