@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Native E‑Commerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Cloud Native Shop</h1>
+        <div class="dashboard">
+            <div class="card">
+                <h2>Products</h2>
+                <div id="product-list">Loading...</div>
+            </div>
+            <div class="card">
+                <h2>Place Order</h2>
+                <input type="text" id="productId" placeholder="Product ID">
+                <button onclick="placeOrder()">Order Now</button>
+                <div id="order-status"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

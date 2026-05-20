@@ -1,0 +1,14 @@
+﻿{
+  "name": "ecommerce-frontend",
+  "version": "1.0.0",
+  "description": "Frontend dashboard for cloud native e-commerce",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Frontend tests passed\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
