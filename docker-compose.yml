@@ -1,0 +1,22 @@
+﻿version: '3.8'
+services:
+  user-service:
+    build: ./src/user-service
+    ports:
+      - "3001:3001"
+  product-service:
+    build: ./src/product-service
+    ports:
+      - "3002:3002"
+  order-service:
+    build: ./src/order-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PRODUCT_SERVICE_URL=http://product-service:3002
+    depends_on:
+      - product-service
+  notification-service:
+    build: ./src/notification-service
+    ports:
+      - "3004:3004"
